@@ -1,0 +1,41 @@
+[system]
+listen_address = 127.0.0.1
+listen_port = 10502 
+# note ports < 1024 will require root privileges
+
+#If no path is specified then this will be in same directy as the code. To disable, set to /dev/null
+logfile=test.log
+#Options for loglevel are: DEBUG, INFO, WARNING, ERROR, CRITICAL
+loglevel=INFO
+
+
+[registers]
+# Sets the content of the output registers
+# Valid addresses are between 40001 - 49999
+# Can set to a static number, a random number or a value that rises and falls on a sine wave
+# format is address = number or "rand,$min,$max,$period" or "risefall,$min,$max,$period"
+# period is in seconds, maximum value is 65535 (unsigned 16 bit integer)
+# e.g. 
+# 40001 = rand,100,1000, 0.1
+# 40002 = 10
+# 40003 = risefall,0,10000,5
+
+40001 = rand,100,1000,0.1
+40002 = 10
+40003 = risefall,0,10000,5
+
+[coils]
+# Sets the value of the output coils
+# Valid addresses are between 1-9999
+# Can be set to static value, change randomly or turn on and off periodically
+# Format is address = 0 or 1 or "rand,$period" or toggle, "$period"
+# periodi is in seconds
+# e.g. 
+# 10 = 1
+# 11 = 0
+# 12 = rand
+# 13 = toggle(5)
+
+10 = 1
+11 = rand,5
+12 = toggle,10
